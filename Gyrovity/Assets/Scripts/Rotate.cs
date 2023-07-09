@@ -75,6 +75,8 @@ public class Rotate : MonoBehaviour
     {
         _target.up = redirection.pointingDir.forward;
         
+        AudioManager.Instance.PlayRotate();
+        
         // Disable the redirection collider
         redirection.GetComponent<Collider>().enabled = false;
         fallController.Freeze();

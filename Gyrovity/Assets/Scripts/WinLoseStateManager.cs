@@ -53,8 +53,6 @@ public class WinLoseStateManager : MonoBehaviour
     private static IEnumerator LoadNextScene()
     {
         yield return new WaitForSeconds(TimeBeforeSceneLoadInSeconds);
-        
-        var nextScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(nextScene.name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

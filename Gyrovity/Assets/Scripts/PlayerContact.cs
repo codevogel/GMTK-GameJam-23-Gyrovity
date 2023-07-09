@@ -51,6 +51,10 @@ public class PlayerContact : MonoBehaviour
             if (!other.CompareTag("Key"))
             {
                 transform.position = other.transform.position;
+                if (other.CompareTag("Redirection"))
+                {
+                    _rotate.RotateTowards(other.GetComponent<Redirection>());
+                }
             }
             if (other.CompareTag("Finish"))
             {
@@ -62,6 +66,15 @@ public class PlayerContact : MonoBehaviour
                 fallController.Freeze();
                 winLoseStateManager.LoseGame();
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Redirection"))
+        {
+            other.GetComponent<Collider>().enabled = true;
+            Debug.Log("enabled!");
         }
     }
 }

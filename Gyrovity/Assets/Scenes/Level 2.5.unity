@@ -1171,8 +1171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d55542f0e123644b065f61a21dc8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winText: {fileID: 0}
-  loseText: {fileID: 0}
   resetTimerSeconds: 2.5
 --- !u!1001 &1121163518
 PrefabInstance:
@@ -1657,6 +1655,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6460088313215910796, guid: 63255fa4bf8291f488fbd2563a544330,
+        type: 3}
+      propertyPath: m_text
+      value: Level 9/15
       objectReference: {fileID: 0}
     - target: {fileID: 9037604817892376851, guid: 63255fa4bf8291f488fbd2563a544330,
         type: 3}

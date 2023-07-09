@@ -26,6 +26,7 @@ public class PlayerContact : MonoBehaviour
         {
             if (hit.collider.CompareTag("Obstacle") || hit.collider.CompareTag("Wall"))
             {
+                AudioManager.Instance.PlayHit();
                 _rotate.Unlock();
             }
         }
@@ -35,6 +36,7 @@ public class PlayerContact : MonoBehaviour
     {
         if (other.CompareTag("Key"))
         {
+            AudioManager.Instance.PlayKey();
             _finish.CollectKey();
             Destroy(other.gameObject);
         }

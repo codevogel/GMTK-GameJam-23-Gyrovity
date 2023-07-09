@@ -37,6 +37,7 @@ public class Rotate : MonoBehaviour
                 Lock();
                 fallController.Freeze();
                 StartCoroutine(UnfreezeAfterDelay());
+                AudioManager.Instance.PlayRotate();
             }
         }
         transform.rotation = Quaternion.LerpUnclamped(transform.rotation, _target.rotation, lerpSpeed);

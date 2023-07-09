@@ -1,35 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class WinLoseStateManager : MonoBehaviour
 {
-    public TextMeshProUGUI winText;
-    public TextMeshProUGUI loseText;
+    private TextMeshProUGUI _winText;
+    private TextMeshProUGUI _loseText;
 
     public float resetTimerSeconds;
 
     private bool _lost;
     private bool _won;
 
+    private const float TimeBeforeSceneLoadInSeconds = 3f;
+
+    private void Awake()
+    {
+        _winText = GameObject.FindGameObjectWithTag("Win Text").GetComponent<TextMeshProUGUI>();
+        _loseText = GameObject.FindGameObjectWithTag("Fail Text").GetComponent<TextMeshProUGUI>();
+    }
+
     public void WinGame()
     {
         if (_won) return;
         
         
-        winText.gameObject.SetActive(true);
+        _winText.gameObject.SetActive(true);
         AudioManager.Instance.PlaySuccess();
         _won = true;
+        StartCoroutine(LoadNextScene());
     }
 
     public void LoseGame()
     {
         if (_lost) return;
         
-        loseText.gameObject.SetActive(true);
+        _loseText.gameObject.SetActive(true);
         AudioManager.Instance.PlayFail();
         StartCoroutine(ResetGameWithDelay(resetTimerSeconds));
         _lost = true;
@@ -39,5 +46,13 @@ public class WinLoseStateManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(delayInSeconds);
         SceneManager.LoadScene(0);
+    }
+
+    private static IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(TimeBeforeSceneLoadInSeconds);
+        
+        var nextScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(nextScene.name);
     }
 }

@@ -11,7 +11,14 @@ public class PlayerContact : MonoBehaviour
     private Fall fallController;
 
     [SerializeField] private Rotate _rotate;
+
+    private Finish _finish;
     
+    private void Awake()
+    {
+        _finish = GameObject.FindGameObjectWithTag("Finish").GetComponent<Finish>();
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("Obstacle") || other.collider.CompareTag("Wall"))
@@ -22,6 +29,10 @@ public class PlayerContact : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Key"))
+        {
+            _finish.CollectKey();
+        }
         if (other.CompareTag("Finish"))
         {
             winLoseStateManager.WinGame();
@@ -32,7 +43,10 @@ public class PlayerContact : MonoBehaviour
     {
         if (transform.position.Approx(other.transform.position, .125f))
         {
-            transform.position = other.transform.position;
+            if (!other.CompareTag("Key"))
+            {
+                transform.position = other.transform.position;
+            }
             if (other.CompareTag("Finish"))
             {
                 fallController.Freeze();

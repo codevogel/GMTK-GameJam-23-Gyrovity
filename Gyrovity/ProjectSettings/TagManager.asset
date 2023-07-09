@@ -7,6 +7,7 @@ TagManager:
   - Death
   - Obstacle
   - Wall
+  - Key
   layers:
   - Default
   - TransparentFX

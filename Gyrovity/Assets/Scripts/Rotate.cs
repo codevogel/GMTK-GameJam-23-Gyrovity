@@ -14,6 +14,8 @@ public class Rotate : MonoBehaviour
 
     private bool _canRotate = true;
 
+    private Redirection _previousRedirect = null;
+
     private void Awake()
     {
         _target = new GameObject().transform;
@@ -35,13 +37,16 @@ public class Rotate : MonoBehaviour
                 Lock();
                 fallController.Freeze();
                 StartCoroutine(UnfreezeAfterDelay());
+                AudioManager.Instance.PlayRotate();
             }
         }
         transform.rotation = Quaternion.LerpUnclamped(transform.rotation, _target.rotation, lerpSpeed);
     }
 
-    private IEnumerator UnfreezeAfterDelay()
+    private IEnumerator UnfreezeAfterDelay(Redirection redirection = null)
     {
+        // Set the redirection
+        _previousRedirect = redirection;
         while (!_target.rotation.eulerAngles.Approx(transform.rotation.eulerAngles, .125f))
         {
             yield return null;
@@ -58,5 +63,23 @@ public class Rotate : MonoBehaviour
     public void Unlock()
     {
         _canRotate = true;
+        
+        // It's safe to re-enable the collider now that we're sure we're no longer in it.
+        if (_previousRedirect != null)
+        {
+            _previousRedirect.GetComponent<Collider>().enabled = true;
+        }
+    }
+
+    public void RotateTowards(Redirection redirection)
+    {
+        _target.up = redirection.pointingDir.forward;
+        
+        // Disable the redirection collider
+        redirection.GetComponent<Collider>().enabled = false;
+        fallController.Freeze();
+        
+        // Pass the redirection so we can later re-enable the collider
+        StartCoroutine(UnfreezeAfterDelay(redirection));
     }
 }

@@ -14,6 +14,9 @@ public class WinLoseStateManager : MonoBehaviour
     private bool _won;
 
     private const float TimeBeforeSceneLoadInSeconds = 3f;
+    
+    private Scene _thisScene;
+
 
     private void Awake()
     {
@@ -21,6 +24,9 @@ public class WinLoseStateManager : MonoBehaviour
         _winText.gameObject.SetActive(false);
         _loseText = GameObject.FindGameObjectWithTag("Fail Text").GetComponent<TextMeshProUGUI>();
         _loseText.gameObject.SetActive(false);
+        
+        _thisScene = SceneManager.GetActiveScene();
+
     }
 
     public void WinGame()
@@ -44,10 +50,10 @@ public class WinLoseStateManager : MonoBehaviour
         _lost = true;
     }
 
-    private static IEnumerator ResetGameWithDelay(float delayInSeconds)
+    private IEnumerator ResetGameWithDelay(float delayInSeconds)
     {
         yield return new WaitForSecondsRealtime(delayInSeconds);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(_thisScene.name);
     }
 
     private static IEnumerator LoadNextScene()

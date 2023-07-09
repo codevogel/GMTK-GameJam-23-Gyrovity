@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerContact : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerContact : MonoBehaviour
     [SerializeField] private Rotate _rotate;
 
     private Finish _finish;
+
     
     private void Awake()
     {

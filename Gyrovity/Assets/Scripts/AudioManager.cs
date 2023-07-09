@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager Instance;
 
-    private AudioSource _source;
+    private static AudioSource _source;
 
     [SerializeField] private AudioClip rotate;
     [SerializeField] private AudioClip hit;
@@ -16,7 +16,10 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _source = GetComponent<AudioSource>();
+        if (_source == null)
+        {
+            _source = GetComponent<AudioSource>();
+        }
     }
 
     public void PlayRotate()

@@ -8,12 +8,15 @@ public class TrackManager : MonoBehaviour
 
     public List<AudioClip> tracks;
 
-    private AudioSource _source;
+    private static AudioSource _source;
     private int _trackIndex = 0;
 
     private void Awake()
     {
-        _source = GetComponent<AudioSource>();
+        if (_source == null)
+        {
+            _source = GetComponent<AudioSource>();
+        }
     }
 
     private void Update()

@@ -21,9 +21,13 @@ public class PlayerContact : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Obstacle") || other.collider.CompareTag("Wall"))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, .625f))
         {
-            _rotate.Unlock();
+            if (hit.collider.CompareTag("Obstacle") || hit.collider.CompareTag("Wall"))
+            {
+                _rotate.Unlock();
+            }
         }
     }
 
@@ -32,6 +36,7 @@ public class PlayerContact : MonoBehaviour
         if (other.CompareTag("Key"))
         {
             _finish.CollectKey();
+            Destroy(other.gameObject);
         }
         if (other.CompareTag("Finish"))
         {

@@ -43,6 +43,7 @@ public class PlayerContact : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             winLoseStateManager.WinGame();
+            _rotate.Lock();
         }
     }
 

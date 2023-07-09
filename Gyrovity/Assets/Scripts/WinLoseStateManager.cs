@@ -18,7 +18,9 @@ public class WinLoseStateManager : MonoBehaviour
     private void Awake()
     {
         _winText = GameObject.FindGameObjectWithTag("Win Text").GetComponent<TextMeshProUGUI>();
+        _winText.gameObject.SetActive(false);
         _loseText = GameObject.FindGameObjectWithTag("Fail Text").GetComponent<TextMeshProUGUI>();
+        _loseText.gameObject.SetActive(false);
     }
 
     public void WinGame()

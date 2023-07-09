@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6966132059638486141}
   - component: {fileID: 4862760951284080900}
+  - component: {fileID: 8545963132119790742}
+  - component: {fileID: 1495681954982859106}
   m_Layer: 0
   m_Name: RestartScene
   m_TagString: Untagged
@@ -30,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4862760951284080900
 MonoBehaviour:
@@ -42,5 +44,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40ce5013d0cf40e4fbf2d6528884aee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8545963132119790742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159752809439353122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c28ab5c5948227489731dc7fae38c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1495681954982859106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159752809439353122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7391a9bcd5f884fb15df9431e246ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
